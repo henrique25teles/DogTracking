@@ -1,0 +1,10 @@
+{
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 12912,
+  "expoServerNgrokUrl": "https://rp-8rm.anonymous.dogtracking.exp.direct",
+  "packagerNgrokUrl": "https://packager.rp-8rm.anonymous.dogtracking.exp.direct",
+  "ngrokPid": 9504,
+  "webpackServerPort": 19006
+}
