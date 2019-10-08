@@ -16,7 +16,6 @@ class Order extends Component<Props>{
     };
 
     render(){
-        console.log(this.props.navigation);
         return (
             <View>
                 <Text>This is order page</Text>
