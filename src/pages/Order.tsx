@@ -19,7 +19,7 @@ class Order extends Component<Props>{
         return (
             <View>
                 <Text>This is order page</Text>
-                <Button title="Navigate" onPress={() => this.props.navigation.navigate('OrderDetails')} />
+                <Button title="Navigate" onPress={() => this.props.navigation.navigate('OrderDetail')} />
             </View>
         )
     }

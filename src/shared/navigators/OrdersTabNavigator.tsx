@@ -15,23 +15,27 @@ import {
 
 import Order from '../../pages/Order'
 
-function OrdersTabNavigator() : JSX.Element {
-    const Navigator = createAppContainer(
+    const OrdersTabNavigator = createAppContainer(
         createMaterialTopTabNavigator({
             PendentOrders: {
-                screen: Order
+                screen: Order,
+                navigationOptions: () => ({
+                    title: 'Pendent'
+                }),
             },
             DeliveredOrders: {
-                screen: Order
+                screen: Order,
+                navigationOptions: () => ({
+                    title: 'Delivered'
+                }),
             },
             AllOrders: {
-                screen: Order
+                screen: Order,
+                navigationOptions: () => ({
+                    title: 'All'
+                }),
             }
         })
     )
     
-    return <Navigator />
-}
-
-
 export default OrdersTabNavigator
