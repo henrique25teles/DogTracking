@@ -10,7 +10,7 @@ import ThemeStackNavigator from './ThemeStackNavigator'
 export default function MasterDrawerNavigator() {
     const createNavigator = createDrawerNavigator({
         Orders: {
-            screen: OrdersStackNavigator,
+            screen: props => <OrdersStackNavigator toogleDrawer={props.navigation.toggleDrawer} />,
             navigationOptions: ({navigation}) => ({
                 drawerLabel: 'Orders'
             }),

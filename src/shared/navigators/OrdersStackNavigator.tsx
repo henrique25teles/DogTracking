@@ -2,11 +2,19 @@ import React from 'react'
 import {createStackNavigator} from 'react-navigation-stack'
 import {createAppContainer} from 'react-navigation'
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
-//import OrdersTabNavigator from './OrdersTabNavigator'
+import { TouchableOpacity } from 'react-native'
+import {Icon} from 'react-native-elements'
+
 import Order from '../../pages/Order'
 import OrderDetails from '../../pages/OrderDetails'
 
-export default function OrdersStackNavigator() {
+interface Props {
+    toogleDrawer: Function
+}
+
+export default function OrdersStackNavigator(props: Props) {
+    ///Creation of tab navigator.
+    /// It'll go inside of the Stack Navigator behind
     const OrderNavigator = createMaterialTopTabNavigator({
         PendentOrders: {
             screen: Order,
@@ -28,11 +36,20 @@ export default function OrdersStackNavigator() {
         }
     })
 
+    ///Creating stack navigator
     const createNavigator = createStackNavigator({
         OrderTab: {
             screen: OrderNavigator,
-            navigationOptions: ({navigationOptions}) => ({
-                title: 'Orders'
+            navigationOptions: ({navigation}) => ({
+                title: 'Orders',
+                headerLeft: () => (
+                    <Icon 
+                        name="menuunfold" 
+                        type="antdesign" 
+                        Component={TouchableOpacity}
+                        onPress={() => props.toogleDrawer()} 
+                    />
+                )
             })
         },
         OrderDetail: {
