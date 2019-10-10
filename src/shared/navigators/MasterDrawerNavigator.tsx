@@ -5,6 +5,7 @@ import {createAppContainer} from 'react-navigation'
 import OrdersStackNavigator from './OrdersStackNavigator'
 import SettingsStackNavigator from './SettingsStackNavigator'
 import AboutStackNavigator from './AboutStackNavigator'
+import ThemeStackNavigator from './ThemeStackNavigator'
 
 export default function MasterDrawerNavigator() {
     const createNavigator = createDrawerNavigator({
@@ -24,6 +25,12 @@ export default function MasterDrawerNavigator() {
             screen: AboutStackNavigator,
             navigationOptions: ({navigation}) => ({
                 drawerLabel: 'About'
+            }),
+        },
+        Theme: {
+            screen: ThemeStackNavigator,
+            navigationOptions: ({navigation}) => ({
+                drawerLabel: 'Theme'
             }),
         }
     })
