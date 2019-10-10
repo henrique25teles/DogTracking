@@ -1,14 +1,36 @@
 import React from 'react'
 import {createStackNavigator} from 'react-navigation-stack'
-import {createAppContainer, NavigationContainer} from 'react-navigation'
-import OrdersTabNavigator from './OrdersTabNavigator'
+import {createAppContainer} from 'react-navigation'
+import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
+//import OrdersTabNavigator from './OrdersTabNavigator'
+import Order from '../../pages/Order'
 import OrderDetails from '../../pages/OrderDetails'
 
+export default function OrdersStackNavigator() {
+    const OrderNavigator = createMaterialTopTabNavigator({
+        PendentOrders: {
+            screen: Order,
+            navigationOptions: () => ({
+                title: 'Pendent'
+            }),
+        },
+        DeliveredOrders: {
+            screen: Order,
+            navigationOptions: () => ({
+                title: 'Delivered'
+            }),
+        },
+        AllOrders: {
+            screen: Order,
+            navigationOptions: () => ({
+                title: 'All'
+            }),
+        }
+    })
 
-const OrdersStackNavigator = createAppContainer(
-    createStackNavigator({
+    const createNavigator = createStackNavigator({
         OrderTab: {
-            screen: OrdersTabNavigator,
+            screen: OrderNavigator,
             navigationOptions: ({navigationOptions}) => ({
                 title: 'Orders'
             })
@@ -20,6 +42,8 @@ const OrdersStackNavigator = createAppContainer(
             })
         }
     })
-)
+    
+    const Navigator = createAppContainer(createNavigator)
 
-export default OrdersStackNavigator
+    return <Navigator />
+}
