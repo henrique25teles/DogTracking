@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "App para rastreamento de correios",
+    "githubUrl": "https://github.com/henrique25teles/DogTracking"
   }
 }
