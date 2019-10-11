@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, StatusBar, View } from 'react-native';
-
+import * as Localization from 'expo-localization'
 import Color from './src/models/enums/Color';
 import Navigator from './src/shared/navigators/MasterDrawerNavigator';
 
 export default function App() {
+  console.log(Localization);
   return (
     <>
       <StatusBar translucent backgroundColor={Color.DodgerBlue} />

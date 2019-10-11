@@ -11,14 +11,14 @@ import { Icon } from 'react-native-elements'
 export default function MasterDrawerNavigator() {
     const createNavigator = createDrawerNavigator({
         Orders: {
-            screen: props => <OrdersStackNavigator toogleDrawer={props.navigation.toggleDrawer} />,
+            screen: ({navigation}) => <OrdersStackNavigator toogleDrawer={navigation.toggleDrawer} />,
             navigationOptions: ({navigation}) => ({
                 drawerLabel: 'Orders',
                 drawerIcon: <Icon name="home" type="antdesign" />
             }),
         },
         Settings: {
-            screen: SettingsStackNavigator,
+            screen: ({navigation}) => <SettingsStackNavigator toogleDrawer={navigation.toggleDrawer} />,
             navigationOptions: ({navigation}) => ({
                 drawerLabel: 'Settings',
                 drawerIcon: <Icon name="settings" type="feather" />
@@ -32,7 +32,7 @@ export default function MasterDrawerNavigator() {
             }),
         },
         Theme: {
-            screen: ThemeStackNavigator,
+            screen: ({navigation}) => <ThemeStackNavigator toogleDrawer={navigation.toggleDrawer} />,
             navigationOptions: ({navigation}) => ({
                 drawerLabel: 'Theme',
                 drawerIcon: <Icon name="theme-light-dark" type="material-community" />,

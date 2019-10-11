@@ -2,18 +2,14 @@ import React from 'react'
 import {createStackNavigator} from 'react-navigation-stack'
 import {createAppContainer} from 'react-navigation'
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
-import { TouchableOpacity } from 'react-native'
-import {Icon} from 'react-native-elements'
 
 import Color from '../../models/enums/Color'
+import HeaderLeftProps from '../interfaces/HeaderLeftProps'
+import {createHeaderLeftToggle} from '../components/HeaderLeft'
 import Order from '../../pages/Order'
 import OrderDetails from '../../pages/OrderDetails'
 
-interface Props {
-    toogleDrawer: Function
-}
-
-export default function OrdersStackNavigator(props: Props) {
+export default function OrdersStackNavigator(props: HeaderLeftProps) {
     ///Creation of tab navigator.
     /// It'll go inside of the Stack Navigator behind
     const OrderNavigator = createMaterialTopTabNavigator({
@@ -43,16 +39,7 @@ export default function OrdersStackNavigator(props: Props) {
             screen: OrderNavigator,
             navigationOptions: ({navigation}) => ({
                 title: 'Orders',
-                headerLeft: () => (
-                    <Icon 
-                        name="menu-fold" 
-                        type="antdesign" 
-                        Component={TouchableOpacity}
-                        containerStyle={{paddingLeft: 5}}
-                        color={Color.GhostWhite}
-                        onPress={() => props.toogleDrawer()} 
-                    />
-                ),
+                headerLeft: createHeaderLeftToggle(props),
                 headerStyle: {
                     backgroundColor: Color.DodgerBlue,
                 },

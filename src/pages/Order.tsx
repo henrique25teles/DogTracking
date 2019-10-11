@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text } from 'react-native'
 import {
     NavigationParams,
     NavigationScreenProp,
     NavigationState,
-  } from 'react-navigation';
+  } from 'react-navigation'
+import {Button} from 'react-native-elements'
   
 interface Props {
 navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -19,7 +20,11 @@ class Order extends Component<Props>{
         return (
             <View>
                 <Text>This is order page</Text>
-                <Button title="Navigate" onPress={() => this.props.navigation.navigate('OrderDetail')} />
+                <Button 
+                    title="See details page" 
+                    onPress={() => this.props.navigation.navigate('OrderDetail')}
+                    containerStyle={{width: '60%', justifyContent: 'center', alignItems: 'center'}}
+                />
             </View>
         )
     }
