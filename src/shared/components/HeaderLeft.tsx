@@ -3,9 +3,13 @@ import {TouchableOpacity} from 'react-native'
 import {Icon} from 'react-native-elements'
 
 import Color from '../../models/enums/Color'
-import HeaderLeftProps from '../interfaces/HeaderLeftProps'
+import { 
+    NavigationState, 
+    NavigationParams, 
+    NavigationScreenProp 
+} from 'react-navigation'
 
-function createHeaderLeftToggle(props: HeaderLeftProps) {
+function HeaderLeftButtonToggle(props: NavigationScreenProp<NavigationState, NavigationParams>) {
     return (
     <Icon 
         name="menu-fold" 
@@ -13,9 +17,8 @@ function createHeaderLeftToggle(props: HeaderLeftProps) {
         Component={TouchableOpacity}
         containerStyle={{paddingLeft: 5}}
         color={Color.GhostWhite}
-        onPress={() => props.toogleDrawer()} 
-        hitSlop={{top:50, bottom: 50, left: 50, right: 100}}
+        onPress={props.toggleDrawer}
     />)
 }
 
-export {createHeaderLeftToggle}
+export {HeaderLeftButtonToggle}

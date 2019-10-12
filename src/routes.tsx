@@ -1,5 +1,5 @@
 import React from 'react'
-import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
+import {createMaterialTopTabNavigator, createTabNavigator} from 'react-navigation-tabs/'
 import {createStackNavigator} from 'react-navigation-stack'
 import {createDrawerNavigator} from 'react-navigation-drawer'
 import {createAppContainer} from 'react-navigation'
@@ -12,26 +12,52 @@ import Theme from 'pages/Theme'
 import About from 'pages/About'
 
 import Color from 'models/enums/Color'
+import { HeaderLeftButtonToggle } from 'shared/components/HeaderLeft'
 
-export default function MasterDrawerNavigator() {
+export default function MasterDrawerNavigator() : JSX.Element {
     const OrderTabs = createMaterialTopTabNavigator({
-        PendentOrders: {
+        PendingOrders: {
             screen: Order,
             navigationOptions: () => ({
-                title: 'Pendent'
+                title: 'Pending',
+                tabBarIcon: ({focused, tintColor}) => {
+                    console.log(focused)
+                    return <Icon name="truck-delivery" type="material-community" color={tintColor} />
+                }
             }),
         },
         DeliveredOrders: {
             screen: Order,
             navigationOptions: () => ({
-                title: 'Delivered'
+                title: 'Delivered',
+                tabBarIcon: ({focused, tintColor}) => {
+                    console.log(focused)
+                    return <Icon name="calendar-check-outline" type="material-community" color={tintColor} />
+                }
             }),
         },
         AllOrders: {
             screen: Order,
             navigationOptions: () => ({
-                title: 'All'
+                title: 'All',
+                tabBarIcon: ({focused, tintColor}) => {
+                    return <Icon name="earth" type="material-community" color={tintColor} />
+                }
             }),
+        }
+    }, {
+        tabBarOptions: {
+            allowFontScaling: true,
+            indicatorStyle: {
+                //backgroundColor: Color.GhostWhite,
+            },
+            tabStyle: {
+                flexDirection: 'row',
+            },
+            style: {
+                backgroundColor: '#3399ff',
+            },
+            showIcon: true,
         }
     })
     
@@ -43,6 +69,7 @@ export default function MasterDrawerNavigator() {
                 headerStyle: {
                     backgroundColor: Color.DodgerBlue,
                 },
+                headerLeft: <HeaderLeftButtonToggle {...navigation} />,
                 headerTintColor: Color.GhostWhite,
             })
         },
@@ -63,7 +90,7 @@ export default function MasterDrawerNavigator() {
             screen: Settings,
             navigationOptions: ({navigation}) => ({
                 title: 'Settings',
-                //headerLeft: createHeaderLeftToggle(props),
+                headerLeft: <HeaderLeftButtonToggle {...navigation} />,
                 headerStyle: {
                     backgroundColor: Color.DodgerBlue,
                 },
@@ -73,7 +100,17 @@ export default function MasterDrawerNavigator() {
     })
 
     const AboutStack = createStackNavigator({
-        About
+        About: {
+            screen: About,
+            navigationOptions: ({navigation}) => ({
+                title: 'About',
+                headerLeft: <HeaderLeftButtonToggle {...navigation} />,
+                headerStyle: {
+                    backgroundColor: Color.DodgerBlue,
+                },
+                headerTintColor: Color.GhostWhite,
+            }),
+        }
     })
 
     const ThemesStack = createStackNavigator({
@@ -81,7 +118,7 @@ export default function MasterDrawerNavigator() {
             screen: Theme,
             navigationOptions: ({navigation}) => ({
                 title: 'Themes',
-                //headerLeft: createHeaderLeftToggle(props),
+                headerLeft: <HeaderLeftButtonToggle {...navigation} />,
                 headerStyle: {
                     backgroundColor: Color.DodgerBlue,
                 },
