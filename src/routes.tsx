@@ -1,5 +1,5 @@
-import React from 'react'
-import {createMaterialTopTabNavigator, createTabNavigator} from 'react-navigation-tabs/'
+import React, {useContext} from 'react'
+import {createMaterialTopTabNavigator} from 'react-navigation-tabs/'
 import {createStackNavigator} from 'react-navigation-stack'
 import {createDrawerNavigator} from 'react-navigation-drawer'
 import {createAppContainer} from 'react-navigation'
@@ -13,15 +13,17 @@ import About from 'pages/About'
 
 import Color from 'models/enums/Color'
 import { HeaderLeftButtonToggle } from 'shared/components/HeaderLeft'
+import LanguageContext from 'stores/LanguageContext'
 
 export default function MasterDrawerNavigator() : JSX.Element {
+    const languageContext = useContext(LanguageContext)
+
     const OrderTabs = createMaterialTopTabNavigator({
         PendingOrders: {
             screen: Order,
             navigationOptions: () => ({
                 title: 'Pending',
                 tabBarIcon: ({focused, tintColor}) => {
-                    console.log(focused)
                     return <Icon name="truck-delivery" type="material-community" color={tintColor} />
                 }
             }),
@@ -31,7 +33,6 @@ export default function MasterDrawerNavigator() : JSX.Element {
             navigationOptions: () => ({
                 title: 'Delivered',
                 tabBarIcon: ({focused, tintColor}) => {
-                    console.log(focused)
                     return <Icon name="calendar-check-outline" type="material-community" color={tintColor} />
                 }
             }),
@@ -131,28 +132,28 @@ export default function MasterDrawerNavigator() : JSX.Element {
         Orders: {
             screen: OrdersStack,
             navigationOptions: ({navigation}) => ({
-                drawerLabel: 'Orders',
+                drawerLabel: languageContext.language.menu.orders,
                 drawerIcon: <Icon name="home" type="antdesign" />
             }),
         },
         Settings: {
             screen: SettingStack,
             navigationOptions: ({navigation}) => ({
-                drawerLabel: 'Settings',
+                drawerLabel: languageContext.language.menu.settings,
                 drawerIcon: <Icon name="settings" type="feather" />
             }),
         },
         Theme: {
             screen: ThemesStack,
             navigationOptions: ({navigation}) => ({
-                drawerLabel: 'Theme',
+                drawerLabel: languageContext.language.menu.theme,
                 drawerIcon: <Icon name="theme-light-dark" type="material-community" />,
             }),
         },
         About: {
             screen: AboutStack,
             navigationOptions: ({navigation}) => ({
-                drawerLabel: 'About',
+                drawerLabel: languageContext.language.menu.about,
                 drawerIcon: <Icon name="questioncircleo" type="antdesign" />
             }),
         },
