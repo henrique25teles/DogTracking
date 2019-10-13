@@ -6,7 +6,6 @@ import {
     NavigationState,
   } from 'react-navigation'
 import {Button} from 'react-native-elements'
-import Teste from 'shared/components/Teste'
   
 interface Props {
 navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -21,7 +20,6 @@ class Order extends Component<Props>{
         return (
             <View>
                 <Text>This is order page</Text>
-                <Teste />
                 <Button 
                     title="See details page" 
                     onPress={() => this.props.navigation.navigate('OrderDetail')}
