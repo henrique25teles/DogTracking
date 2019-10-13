@@ -14,15 +14,17 @@ import About from 'pages/About'
 import Color from 'models/enums/Color'
 import { HeaderLeftButtonToggle } from 'shared/components/HeaderLeft'
 import LanguageContext from 'stores/LanguageContext'
+import Localization from 'translations/Localization'
 
 export default function MasterDrawerNavigator() : JSX.Element {
     const languageContext = useContext(LanguageContext)
+    const languageApi = Localization(languageContext.language)
 
     const OrderTabs = createMaterialTopTabNavigator({
         PendingOrders: {
             screen: Order,
             navigationOptions: () => ({
-                title: 'Pending',
+                title: languageApi.t('pendingOrders'),
                 tabBarIcon: ({focused, tintColor}) => {
                     return <Icon name="truck-delivery" type="material-community" color={tintColor} />
                 }
@@ -31,7 +33,7 @@ export default function MasterDrawerNavigator() : JSX.Element {
         DeliveredOrders: {
             screen: Order,
             navigationOptions: () => ({
-                title: 'Delivered',
+                title: languageApi.t('deliveredOrders'),
                 tabBarIcon: ({focused, tintColor}) => {
                     return <Icon name="calendar-check-outline" type="material-community" color={tintColor} />
                 }
@@ -40,7 +42,7 @@ export default function MasterDrawerNavigator() : JSX.Element {
         AllOrders: {
             screen: Order,
             navigationOptions: () => ({
-                title: 'All',
+                title: languageApi.t('allOrders'),
                 tabBarIcon: ({focused, tintColor}) => {
                     return <Icon name="earth" type="material-community" color={tintColor} />
                 }
@@ -66,7 +68,7 @@ export default function MasterDrawerNavigator() : JSX.Element {
         OrderTab: {
             screen: OrderTabs,
             navigationOptions: ({navigation}) => ({
-                title: 'Orders',
+                title: languageApi.t('orders'),
                 headerStyle: {
                     backgroundColor: Color.DodgerBlue,
                 },
@@ -77,7 +79,7 @@ export default function MasterDrawerNavigator() : JSX.Element {
         OrderDetail: {
             screen: OrderDetails,
             navigationOptions: ({navigation}) => ({
-                title: 'Order Details',
+                title: languageApi.t('details'),
                 headerStyle: {
                     backgroundColor: Color.DodgerBlue.toLowerCase(),
                 },
@@ -90,7 +92,7 @@ export default function MasterDrawerNavigator() : JSX.Element {
         SettingsHome: {
             screen: Settings,
             navigationOptions: ({navigation}) => ({
-                title: 'Settings',
+                title: languageApi.t('settings'),
                 headerLeft: <HeaderLeftButtonToggle {...navigation} />,
                 headerStyle: {
                     backgroundColor: Color.DodgerBlue,
@@ -104,7 +106,7 @@ export default function MasterDrawerNavigator() : JSX.Element {
         About: {
             screen: About,
             navigationOptions: ({navigation}) => ({
-                title: 'About',
+                title: languageApi.t('about'),
                 headerLeft: <HeaderLeftButtonToggle {...navigation} />,
                 headerStyle: {
                     backgroundColor: Color.DodgerBlue,
@@ -118,7 +120,7 @@ export default function MasterDrawerNavigator() : JSX.Element {
         ThemeHome: {
             screen: Theme,
             navigationOptions: ({navigation}) => ({
-                title: 'Themes',
+                title: languageApi.t('themes'),
                 headerLeft: <HeaderLeftButtonToggle {...navigation} />,
                 headerStyle: {
                     backgroundColor: Color.DodgerBlue,
@@ -132,28 +134,28 @@ export default function MasterDrawerNavigator() : JSX.Element {
         Orders: {
             screen: OrdersStack,
             navigationOptions: ({navigation}) => ({
-                drawerLabel: languageContext.language.menu.orders,
+                drawerLabel: languageApi.t('orders'),
                 drawerIcon: <Icon name="home" type="antdesign" />
             }),
         },
         Settings: {
             screen: SettingStack,
             navigationOptions: ({navigation}) => ({
-                drawerLabel: languageContext.language.menu.settings,
+                drawerLabel: languageApi.t('settings'),
                 drawerIcon: <Icon name="settings" type="feather" />
             }),
         },
         Theme: {
             screen: ThemesStack,
             navigationOptions: ({navigation}) => ({
-                drawerLabel: languageContext.language.menu.theme,
+                drawerLabel: languageApi.t('themes'),
                 drawerIcon: <Icon name="theme-light-dark" type="material-community" />,
             }),
         },
         About: {
             screen: AboutStack,
             navigationOptions: ({navigation}) => ({
-                drawerLabel: languageContext.language.menu.about,
+                drawerLabel: languageApi.t('about'),
                 drawerIcon: <Icon name="questioncircleo" type="antdesign" />
             }),
         },

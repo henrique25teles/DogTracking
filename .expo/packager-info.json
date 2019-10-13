@@ -1,8 +1,9 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 23676,
-  "expoServerNgrokUrl": "https://gx-66c.henrique25t.dogtracking.exp.direct",
-  "packagerNgrokUrl": "https://packager.gx-66c.henrique25t.dogtracking.exp.direct",
-  "ngrokPid": 25804
+  "packagerPid": 10468,
+  "expoServerNgrokUrl": "https://xa-qem.henrique25t.dogtracking.exp.direct",
+  "packagerNgrokUrl": "https://packager.xa-qem.henrique25t.dogtracking.exp.direct",
+  "ngrokPid": 19336,
+  "devToolsPort": 19002
 }

@@ -1,12 +1,13 @@
-interface MenuProps {
-    orders: string,
-    settings: string,
-    theme: string,
-    about: string
-}
-
 export interface LocalizationProps {
-    menu: MenuProps,
+    order: string,
+    orders: string,
+    pendingOrders: string,
+    deliveredOrders: string,
+    allOrders: string,
+    details: string,
+    settings: string,
+    themes: string,
+    about: string,
 }
 
 export interface LocalizedStrings {
@@ -15,4 +16,46 @@ export interface LocalizedStrings {
     "pt": LocalizationProps,
     "pt-BR": LocalizationProps,
     "pt-PT": LocalizationProps,
+}
+
+export interface i18nProps {
+    "createTranslationOptions": Function,
+    "currentLocale": Function,
+    "defaultLocale": string,
+    "defaultSeparator": string,
+    "extend": Function,
+    "fallbacks": boolean,
+    "getFullScope": Function,
+    "initializeOptions": Function,
+    "interpolate": Function,
+    "isSet": Function,
+    "l": Function,
+    "locale": string,
+    "locales": Object,
+    "localize": Function,
+    "lookup": Function,
+    "meridian": Function,
+    "missingBehaviour": string,
+    "missingPlaceholder": Function,
+    "missingTranslation": Function,
+    "missingTranslationPrefix": string,
+    "nullPlaceholder": Function,
+    "p": Function,
+    "parseDate": Function,
+    "placeholder": string,
+    "pluralization": Object,
+    "pluralizationLookup": Function,
+    "pluralizationLookupWithoutFallback": Function,
+    "pluralize": Function,
+    "prepareOptions": Function,
+    "reset": Function,
+    "strftime": Function,
+    "t": Function,
+    "toCurrency": Function,
+    "toHumanSize": Function,
+    "toNumber": Function,
+    "toPercentage": Function,
+    "toTime": Function,
+    "translate": Function,
+    "translations": Object,
 }
