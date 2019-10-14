@@ -8,6 +8,11 @@ const en_US: LocalizationProps = {
     "allOrders": "All",
     "details": "Details",
     "settings": "Settings",
+    "settingsOptions": {
+        "language": "Language",
+        "selectLanguage": "Select Language",
+        "systemDefault": "System Default"
+    },
     "about": "About",
     "themes": "Themes"
 }

@@ -8,6 +8,11 @@ const pt_bR: LocalizationProps = {
     "allOrders": "Todas",
     "details": "Detalhes",
     "settings": "Configurações",
+    "settingsOptions": {
+        "language": "Idioma",
+        "selectLanguage": "Selec. Idioma",
+        "systemDefault": "Padrão do sistema"
+    },
     "about": "Sobre",
     "themes": "Temas"
 }

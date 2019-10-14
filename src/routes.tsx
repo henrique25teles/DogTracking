@@ -15,6 +15,7 @@ import Color from 'models/enums/Color'
 import { HeaderLeftButtonToggle } from 'shared/components/HeaderLeft'
 import LanguageContext from 'stores/LanguageContext'
 import Localization from 'translations/Localization'
+import LanguageSelect from 'pages/LanguageSelect'
 
 export default function MasterDrawerNavigator() : JSX.Element {
     const languageContext = useContext(LanguageContext)
@@ -99,6 +100,16 @@ export default function MasterDrawerNavigator() : JSX.Element {
                 },
                 headerTintColor: Color.GhostWhite,
             })
+        },
+        LanguageSelect: {
+            screen: LanguageSelect,
+            navigationOptions: ({navigation}) => ({
+                title: languageApi.t('settingsOptions.selectLanguage'),
+                headerStyle: {
+                    backgroundColor: Color.DodgerBlue,
+                },
+                headerTintColor: Color.GhostWhite,
+            })
         }
     })
 
@@ -159,6 +170,8 @@ export default function MasterDrawerNavigator() : JSX.Element {
                 drawerIcon: <Icon name="questioncircleo" type="antdesign" />
             }),
         },
+    }, {
+        unmountInactiveRoutes: false
     })
     
     const Navigator = createAppContainer(drawerNavigator)

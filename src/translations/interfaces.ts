@@ -1,3 +1,9 @@
+interface SettingsProps {
+    language: string,
+    selectLanguage: string,
+    systemDefault: string,
+}
+
 export interface LocalizationProps {
     order: string,
     orders: string,
@@ -6,6 +12,7 @@ export interface LocalizationProps {
     allOrders: string,
     details: string,
     settings: string,
+    settingsOptions: SettingsProps,
     themes: string,
     about: string,
 }
