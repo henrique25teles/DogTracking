@@ -1,9 +1,9 @@
-import React, {useState, useMemo, Component} from 'react';
+import React, {Component} from 'react';
 import { AsyncStorage } from 'react-native';
 import { locale } from 'expo-localization'
 
-import LanguageContext from 'stores/LanguageContext'
-import Navigator from 'routes'
+import AppContainer from 'routes'
+import Localization from 'translations/Localization';
 
 interface State {
     language: string
@@ -14,6 +14,10 @@ export default class Start extends Component<any, State> {
         language: locale
     }
 
+    t = (scope: string, options: any): string => {
+        return Localization.t(scope, { locale: this.state.language, ...options });
+    };
+
     componentDidMount() {
         AsyncStorage.getItem('selectedLanguage').then(value => {
           if(value)
@@ -21,7 +25,7 @@ export default class Start extends Component<any, State> {
         })
     }
     
-    changeLanguage(languageToSet: string) {
+    changeLanguage = (languageToSet: string): void => {
         AsyncStorage.setItem('selectedLanguage', languageToSet).then(() => {
             this.setState({language: languageToSet})
         })
@@ -29,12 +33,13 @@ export default class Start extends Component<any, State> {
 
     render() {
         return (
-            <LanguageContext.Provider value={{
-              language: this.state.language, changeLanguage: 
-              this.changeLanguage.bind(this)}}
-            >
-                <Navigator />
-            </LanguageContext.Provider>
+            <AppContainer 
+                screenProps={{
+                    t: this.t,
+                    language: this.state.language,
+                    setLanguage: this.changeLanguage,
+                }}
+            />
         );
     }
 }

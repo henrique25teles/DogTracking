@@ -1,8 +1,8 @@
 {
+  "urlRandomness": "p3-fii",
   "hostType": "lan",
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "xa-qem",
   "https": false
 }

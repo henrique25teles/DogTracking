@@ -1,10 +1,10 @@
-import * as Localization from 'expo-localization'
 import i18n from 'i18n-js'
 
-import {LocalizedStrings, i18nProps} from 'translations/interfaces'
+import {LocalizedStrings} from 'interfaces/TranslationInterface'
 
 import en_US from 'translations/en-US'
 import pt_BR from 'translations/pt-BR'
+import { LanguageProps } from 'interfaces/SettingsInterface'
 
 const localizedStrings : LocalizedStrings = {
     "en": en_US,
@@ -18,7 +18,9 @@ i18n.fallbacks = true
 i18n.translations = localizedStrings
 i18n.defaultLocale = 'en'
 
-export default (locale?: string) : i18nProps => {
-    i18n.locale = locale || Localization.locale;
-    return i18n;
-} ;
+export const supportedLanguages : Array<LanguageProps> = [
+    {id: 'system', name: 'System'},
+    {id: 'pt-BR', name: 'Português Brasileiro'},
+    {id: 'en-US', name: 'English US'},
+]
+export default i18n

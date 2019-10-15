@@ -1,22 +1,15 @@
-import React, {useState, useContext, useEffect} from 'react'
-import { ScrollView, Text, AsyncStorage } from 'react-native'
+import React, {useState, useEffect} from 'react'
+import { ScrollView, AsyncStorage } from 'react-native'
 import { ListItem } from 'react-native-elements'
 
-import SettingsContext, {LanguageProps, supportedLanguages} from 'stores/SettingsContext'
-import LanguageContext from 'stores/LanguageContext'
-import Localization from 'translations/Localization'
-import {NavigationScreenProp, NavigationState, NavigationParams} from 'react-navigation'
+import {ScreenProps} from 'interfaces/NavigationInterface'
+import { LanguageProps } from 'interfaces/SettingsInterface'
+import {NavigationStackScreenComponent} from 'react-navigation-stack'
+import { supportedLanguages } from 'translations/Localization'
 
-interface Props {
-    navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-}
-
-function Settings(props: Props){
+const Settings: NavigationStackScreenComponent<any, ScreenProps> = props => {
     const [selectedLanguage, setSelectedLanguage] = useState<LanguageProps>(supportedLanguages[0])
 
-    const languageContext = useContext(LanguageContext);
-    const languageApi = Localization(languageContext.language)    
-    
     useEffect(() => {
         AsyncStorage.getItem('selectedLanguage').then(value => {
             if (value){
@@ -29,7 +22,7 @@ function Settings(props: Props){
     return (
         <ScrollView>
             <ListItem 
-                title={languageApi.t('settingsOptions.language')}
+                title={props.screenProps.t('settingsOptions.language')}
                 subtitle={selectedLanguage.name}
                 onPress={() => props.navigation.navigate('LanguageSelect')}
                 bottomDivider

@@ -1,37 +1,51 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { Text, View, FlatList, ListRenderItemInfo, AsyncStorage } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { FlatList, ActivityIndicator } from 'react-native'
 import {ListItem} from 'react-native-elements'
+import {NavigationStackScreenComponent} from 'react-navigation-stack'
 
-// import Localization from 'translations/Localization';
-import LanguageContext from 'stores/LanguageContext';
-import {LanguageProps, supportedLanguages} from 'stores/SettingsContext'
+import { ScreenProps } from 'interfaces/NavigationInterface';
+import { LanguageProps } from 'interfaces/SettingsInterface'
+import { supportedLanguages } from 'translations/Localization';
 
-export default function LanguageSelect(){
+const LanguageSelect: NavigationStackScreenComponent<any, ScreenProps> = props => {
     const [languages] = useState<Array<LanguageProps>>(supportedLanguages)
     const [selectedLanguage, setSelectedLanguage] = useState(supportedLanguages[0])
-    const languageContext = useContext(LanguageContext)
+    const [isLoading, setIsLoading] = useState<boolean>(true)
 
     useEffect(() => {
-        const languageToSet = supportedLanguages.find(language => language.id === languageContext.language)
+        const languageToSet = supportedLanguages.find(language => language.id === props.screenProps.language)
         setSelectedLanguage(languageToSet)
+        setIsLoading(false)
     }, [])
     
+    function onSelectLanguage(item: LanguageProps) {
+        setIsLoading(true)
+        setTimeout(() => {
+            setSelectedLanguage(item)
+            props.screenProps.setLanguage(item.id)
+        }, 100);
+        //setIsLoading(false)
+    }
+
     return (
-        <FlatList<LanguageProps>
-            data={languages}
-            renderItem={({item}) => (
-                <ListItem 
-                    title={item.name}
-                    checkBox={{iconRight: true, checked: item === selectedLanguage}}
-                    onPress={() => {
-                        setSelectedLanguage(item)
-                        languageContext.changeLanguage(item.id)
-                    }}
-                    bottomDivider                    
-                />
-            )}
-            extraData={selectedLanguage}
-            keyExtractor={(item, index) => index.toString()}
-        />
+        <>
+            <ActivityIndicator size="large" color="#1818ff" animating={isLoading} style={{position:'absolute', margin:'60%'}} />
+            <FlatList<LanguageProps>
+                data={languages}
+                renderItem={({item}) => (
+                    <ListItem 
+                        title={item.name}
+                        checkBox={{iconRight: true, checked: item === selectedLanguage}}
+                        onPress={() => onSelectLanguage(item)}
+                        disabled={isLoading}
+                        bottomDivider
+                    />
+                )}
+                extraData={selectedLanguage}
+                keyExtractor={(item, index) => index.toString()}
+            />
+        </>
     )
 }
+
+export default LanguageSelect
