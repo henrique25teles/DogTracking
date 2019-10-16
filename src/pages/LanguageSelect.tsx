@@ -20,11 +20,9 @@ const LanguageSelect: NavigationStackScreenComponent<any, ScreenProps> = props =
     
     function onSelectLanguage(item: LanguageProps) {
         setIsLoading(true)
-        setTimeout(() => {
-            setSelectedLanguage(item)
-            props.screenProps.setLanguage(item.id)
-        }, 100);
-        //setIsLoading(false)
+        setSelectedLanguage(item)
+        props.screenProps.setLanguage(item.id)
+        setIsLoading(false)
     }
 
     return (

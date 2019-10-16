@@ -1,9 +1,9 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 23696,
+  "packagerPid": 26468,
   "expoServerNgrokUrl": "https://p3-fii.henrique25t.dogtracking.exp.direct",
   "packagerNgrokUrl": "https://packager.p3-fii.henrique25t.dogtracking.exp.direct",
-  "ngrokPid": 540,
+  "ngrokPid": 8968,
   "devToolsPort": 19002
 }

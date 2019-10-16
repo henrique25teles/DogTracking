@@ -14,11 +14,11 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#C2185B"
+      "resizeMode": "cover",
+      "backgroundColor": "#36bbeb"
     },
     "androidStatusBar": {
-      "backgroundColor": "#C2185B"
+      "backgroundColor": "#36bbeb"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

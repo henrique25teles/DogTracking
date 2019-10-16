@@ -1,30 +1,30 @@
 import React, {Component} from 'react';
-import { AsyncStorage } from 'react-native';
-import { locale } from 'expo-localization'
+import { AsyncStorage } from 'react-native'
 
 import AppContainer from 'routes'
-import Localization from 'translations/Localization';
+import Localization from 'translations/Localization'
 
-interface State {
-    language: string
+interface Props {
+    locale: string
 }
 
-export default class Start extends Component<any, State> {
-    state = {
-        language: locale
-    }
+interface State {
+    language: string,
+}
 
+export default class Start extends Component<Props, State> {
+    constructor(props){
+        super(props)
+        this.state = {
+            language: props.locale
+        }
+    }
+    
+    //Translate
     t = (scope: string, options: any): string => {
         return Localization.t(scope, { locale: this.state.language, ...options });
     };
 
-    componentDidMount() {
-        AsyncStorage.getItem('selectedLanguage').then(value => {
-          if(value)
-            this.setState({language: value})
-        })
-    }
-    
     changeLanguage = (languageToSet: string): void => {
         AsyncStorage.setItem('selectedLanguage', languageToSet).then(() => {
             this.setState({language: languageToSet})
