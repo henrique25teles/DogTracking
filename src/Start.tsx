@@ -31,7 +31,7 @@ export default class Start extends Component<Props, State> {
         })
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <AppContainer 
                 screenProps={{
