@@ -34,7 +34,6 @@ export default function App() {
   }
 
   if (!state.isReady){
-    SplashScreen.hide()
     LoadApp()
     return <AnimatedSplash />
   }

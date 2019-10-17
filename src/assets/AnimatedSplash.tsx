@@ -1,10 +1,18 @@
-import React from 'react';
-import { View, Image, StyleSheet, Dimensions } from 'react-native';
+import React, { useEffect } from 'react'
+import { View, Image, StyleSheet, Dimensions } from 'react-native'
+import {SplashScreen} from 'expo'
 
 import AnimatedBone from 'assets/AnimatedBone'
 const SplashImage = require('./splash.png')
 
 export default function AnimatedSplash() {
+
+    useEffect(() => {
+        //Espera a Tela ser Renderizada antes de ocultar a splash screen
+        setTimeout(() => {
+            SplashScreen.hide();
+        }, 150);
+    }, [])
 
   return (
     <View style={styles.container}>
