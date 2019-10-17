@@ -6,6 +6,8 @@ import {
     NavigationState,
   } from 'react-navigation'
 import {Button} from 'react-native-elements'
+import { TextInput } from 'react-native-gesture-handler';
+const emoji = require('node-emoji')
   
 interface Props {
 navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -26,6 +28,7 @@ class Order extends Component<Props>{
                     containerStyle={{width: '60%', justifyContent: 'center', alignItems: 'center'}}
                 />
                 <Text style={{fontSize:28}}>OI SIRLENE</Text>
+                <TextInput onChangeText={text => console.log(text)} />
             </View>
         )
     }

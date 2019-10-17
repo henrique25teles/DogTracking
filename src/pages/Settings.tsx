@@ -25,6 +25,7 @@ const Settings: NavigationStackScreenComponent<any, ScreenProps> = props => {
                 title={props.screenProps.t('settingsOptions.language')}
                 subtitle={selectedLanguage.name}
                 onPress={() => props.navigation.navigate('LanguageSelect')}
+                leftIcon={{name: 'language', type: 'entypo'}}
                 bottomDivider
                 />
         </ScrollView>
