@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, FunctionComponent} from 'react';
 import { StyleSheet, StatusBar, View, AsyncStorage } from 'react-native';
 import { locale } from 'expo-localization'
 import {SplashScreen} from 'expo'
@@ -12,7 +12,7 @@ interface State {
   isReady: boolean
 }
 
-export default function App() {
+const App: FunctionComponent = () => {
   SplashScreen.preventAutoHide()
 
   const [state, setState] = useState<State>({
@@ -59,3 +59,5 @@ const styles = StyleSheet.create({
     width: '100%',
   }
 });
+
+export default App
