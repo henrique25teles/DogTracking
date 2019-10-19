@@ -29,7 +29,7 @@ const App: FunctionComponent = () => {
           isReady: true
         })
         
-      }, 3000);
+      }, 2000);
     })
   }
 

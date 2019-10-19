@@ -5,7 +5,7 @@ import {
     NavigationScreenProp,
     NavigationState,
   } from 'react-navigation'
-import {Button, ListItem, AvatarIcon} from 'react-native-elements'
+import {Button, ListItem, AvatarIcon, IconObject} from 'react-native-elements'
 import { IconProps } from 'react-native-vector-icons/Icon'
 import Color from 'models/enums/Color'
 const emoji = require('node-emoji')
@@ -39,7 +39,10 @@ class Order extends Component<Props, State>{
                 {name: "Pod", code: "OL789456123BR", type: "Prime", country:"BR", icon: {name: 'package', type:'octicon', color:Color.DodgerBlue }},
                 {name: "Fone", code: "OL159519879BR", type: "Pac", country:"BR", icon: {name: 'truck-check', type:'material-community', color:Color.DodgerBlue }},
                 {name: "Bebe", code: "OL879549875BR", type: "Express", country:"US", icon: {name: 'truck-delivery', type:'material-community', color:Color.DodgerBlue }},
+                {name: "Novo", code: "OL879549875BR", type: "Express-Delivery Track Law", country:"BR", icon: {name: 'road-variant', type:'material-community', color:Color.DodgerBlue }},
                 {name: "Teste", code: "OL789546849BR", type: "Sedex", country:"BR", icon: {name: 'truck-fast', type:'material-community', color:Color.DodgerBlue }},
+                {name: "Concluido", code: "OL789546849BR", type: "Ola", country:"US", icon: {name: 'flag-checkered', type:'font-awesome', color:Color.DodgerBlue }},
+                {name: "Caixa", code: "OL789546849BR", type: "Ola", country:"US", icon: {name: 'package-variant', type:'material-community', color:Color.DodgerBlue }},
             ]
         }
     }
@@ -55,7 +58,17 @@ class Order extends Component<Props, State>{
             <ListItem 
                 title={item.name} 
                 subtitle={item.code}
-                leftAvatar={{icon:item.icon}}
+                leftAvatar={{
+                    icon:item.icon, 
+                    size: 'medium', 
+                    containerStyle:{
+                        borderColor:Color.DodgerBlue,
+                        borderWidth: 1,
+                    },
+                    overlayContainerStyle: {
+                        backgroundColor: Color.GhostWhite,
+                    }
+                }}
                 rightSubtitle={countryEmoji}
                 rightSubtitleStyle={styles.rightSubtitleStyle}
                 rightContentContainerStyle={styles.rightContentContainerStyle}
@@ -88,7 +101,7 @@ const styles = StyleSheet.create({
     },
     rightSubtitleStyle: {
         fontSize: 16
-    }
+    },
 })
 
 export default Order
