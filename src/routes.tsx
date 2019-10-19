@@ -30,7 +30,7 @@ import { HeaderLeftButtonToggle } from 'shared/components/HeaderLeft'
         DeliveredOrders: {
             screen: Order,
             navigationOptions: (props: TabNavOptions) => ({
-                title: props.screenProps.t('order'),
+                title: props.screenProps.t('deliveredOrders'),
                 tabBarIcon: ({focused, tintColor}) => {
                     return <Icon name="calendar-check-outline" type="material-community" color={tintColor} />
                 }
