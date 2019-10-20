@@ -89,3 +89,4 @@ typings/
 
 # Expo
 .expo/
+.expo/packager-info.json

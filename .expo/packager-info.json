@@ -1,6 +1,6 @@
 {
-  "packagerPort": 19003,
-  "packagerPid": 23432,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerPort": 19001,
   "expoServerNgrokUrl": "https://zf-dmz.henrique25t.dogtracking.exp.direct",
   "packagerNgrokUrl": "https://packager.zf-dmz.henrique25t.dogtracking.exp.direct",
