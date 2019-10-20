@@ -1,52 +1,22 @@
-import React, {useState, FunctionComponent} from 'react';
-import { StyleSheet, StatusBar, View, AsyncStorage } from 'react-native';
-import { locale } from 'expo-localization'
+import React, {FunctionComponent} from 'react';
+import { StyleSheet, View } from 'react-native';
 import {SplashScreen} from 'expo'
+import { Provider } from 'react-redux'
 
-import Color from 'models/enums/Color';
 import Start from 'Start'
-import AnimatedSplash from 'assets/AnimatedSplash';
-
-interface State {
-  language: string,
-  isReady: boolean
-}
+import store from 'store'
 
 const App: FunctionComponent = () => {
   SplashScreen.preventAutoHide()
 
-  const [state, setState] = useState<State>({
-    language: locale,
-    isReady: false
-  })
-
-  async function LoadApp() {
-    AsyncStorage.getItem('selectedLanguage').then(value => {
-      setTimeout(() => {
-        setState({
-          ...state,
-          language: value || state.language,
-          isReady: true
-        })
-        
-      }, 2000);
-    })
-  }
-
-  if (!state.isReady){
-    LoadApp()
-    return <AnimatedSplash />
-  }
-
   return (
-    <>
-      <StatusBar translucent backgroundColor={Color.DodgerBlue} />
-      <View style={styles.container}>
-        <View style={styles.content}>
-          <Start locale={state.language} />
-        </View>
+    <View style={styles.container}>
+      <View style={styles.content}>
+        <Provider store={store}>
+          <Start  />
+        </Provider>
       </View>
-    </>
+    </View>
   );
 }
 

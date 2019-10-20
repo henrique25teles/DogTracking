@@ -1,18 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { View, Image, StyleSheet, Dimensions } from 'react-native'
-import {SplashScreen} from 'expo'
 
 import AnimatedBone from 'assets/AnimatedBone'
 const SplashImage = require('./splash.png')
 
 export default function AnimatedSplash() {
-
-    useEffect(() => {
-        //Espera a Tela ser Renderizada antes de ocultar a splash screen
-        setTimeout(() => {
-            SplashScreen.hide();
-        }, 600);
-    }, [])
 
   return (
     <View style={styles.container}>
@@ -37,6 +29,5 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 25,
         left: Dimensions.get('screen').width / 2 - 32
-        
     }
 });

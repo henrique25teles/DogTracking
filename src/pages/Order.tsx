@@ -1,13 +1,13 @@
 import React, { Component, ReactNode } from 'react'
-import { View, Text, FlatList, ListRenderItem, StyleSheet } from 'react-native'
+import { FlatList, StyleSheet } from 'react-native'
 import {
     NavigationParams,
     NavigationScreenProp,
     NavigationState,
   } from 'react-navigation'
-import {Button, ListItem, AvatarIcon, IconObject} from 'react-native-elements'
-import { IconProps } from 'react-native-vector-icons/Icon'
+import {ListItem, AvatarIcon} from 'react-native-elements'
 import Color from 'models/enums/Color'
+import { SplashScreen } from 'expo'
 const emoji = require('node-emoji')
   
 enum CountryEmoji {
@@ -80,6 +80,8 @@ class Order extends Component<Props, State>{
     }
 
     render(): JSX.Element {
+        SplashScreen.hide()
+
         return (
             <FlatList 
                 data={this.state.orders}
