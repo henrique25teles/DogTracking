@@ -17,11 +17,12 @@ const localizedStrings : LocalizedStrings = {
 
 i18n.fallbacks = true
 i18n.translations = localizedStrings
-i18n.defaultLocale = 'en'
+
+export const defaultLocale = i18n.defaultLocale = 'en'
 
 export const supportedLanguages : Array<LanguageProps> = [
-    {id: 'system', name: `${emoji.get(':round_pushpin:')} System`},
-    {id: 'pt-BR', name: `${emoji.get(':flag-br:')}  Português Brasileiro`},
-    {id: 'en-US', name: `${emoji.get(':us:')}  English US`},
+    {id: 'system', name: 'System', symbol:`${emoji.get(':round_pushpin:')}` },
+    {id: 'pt-BR', name: 'Português Brasileiro', symbol: `${emoji.get(':flag-br:')}`},
+    {id: 'en-US', name: 'English US', symbol: `${emoji.get(':us:')}`},
 ]
 export default i18n
