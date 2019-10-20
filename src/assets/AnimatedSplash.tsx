@@ -11,7 +11,7 @@ export default function AnimatedSplash() {
         //Espera a Tela ser Renderizada antes de ocultar a splash screen
         setTimeout(() => {
             SplashScreen.hide();
-        }, 500);
+        }, 600);
     }, [])
 
   return (
