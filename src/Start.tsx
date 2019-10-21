@@ -16,13 +16,13 @@ import {Asset} from 'expo-asset'
 interface StateProps {
     isLoading: boolean
     isReady: boolean
-    language: Languages
+    selectedLanguage: Languages
     languages: Languages[]
   }
   
 interface DispatchProps {
     setPreLoaded(): void
-    setIsReady(value: boolean): void
+    setIsReady(): void
     setIsReadySettings(language: Languages) : void
 }
 
@@ -41,24 +41,25 @@ const Start:FunctionComponent<Props> = (props) => {
 
     async function loadApplication() {
         const selectedLanguage = await AsyncStorage.getItem('selectedLanguage');
+
         if (selectedLanguage) {
-            const languageToSet = props.languages.find(lang => lang.id === selectedLanguage);
-            props.setIsReadySettings(languageToSet);
+            const languageToSet = props.languages.find(lang => lang.id === parseInt(selectedLanguage));
+            
+            if (languageToSet.id !== props.selectedLanguage.id){
+                props.setIsReadySettings(languageToSet);
+            } else {
+                props.setIsReady();
+            }
         } else {
-            props.setIsReady(true);
+            await AsyncStorage.setItem('selectedLanguage', props.selectedLanguage.id.toString())
+            props.setIsReady();
         }
     }
     
     //Translate
     function t(scope: string, options: any): string {
-        return Localization.t(scope, { locale: props.language.id, ...options });
+        return Localization.t(scope, { locale: props.selectedLanguage.locale, ...options });
     };
-
-    function changeLanguage(languageToSet: string): void {
-        // AsyncStorage.setItem('selectedLanguage', languageToSet).then(() => {
-        //     //this.setState({language: languageToSet})
-        // })
-    }
 
     //Pre Loading
     if (props.isLoading) {
@@ -85,8 +86,6 @@ const Start:FunctionComponent<Props> = (props) => {
             <AppContainer
                 screenProps={{
                     t: t,
-                    language: props.language.id,
-                    setLanguage: changeLanguage,
                 }}
             />
         </>
@@ -97,7 +96,7 @@ const mapStateToProps = (state: ApplicationState) => {
     return {
         isLoading: state.applicationStatus.isLoading,
         isReady: state.applicationStatus.isReady,
-        language: state.applicationStatus.selectedLanguage,
+        selectedLanguage: state.applicationStatus.selectedLanguage,
         languages: state.applicationStatus.Languages,
     }
 };

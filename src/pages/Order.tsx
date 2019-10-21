@@ -43,6 +43,8 @@ class Order extends Component<Props, State>{
                 {name: "Teste", code: "OL789546849BR", type: "Sedex", country:"BR", icon: {name: 'truck-fast', type:'material-community', color:Color.DodgerBlue }},
                 {name: "Concluido", code: "OL789546849BR", type: "Ola", country:"US", icon: {name: 'flag-checkered', type:'font-awesome', color:Color.DodgerBlue }},
                 {name: "Caixa", code: "OL789546849BR", type: "Ola", country:"US", icon: {name: 'package-variant', type:'material-community', color:Color.DodgerBlue }},
+                {name: "Aviao", code: "OL789546849BR", type: "Ola", country:"US", icon: {name: 'airplane-landing', type:'material-community', color:Color.DodgerBlue }},
+                {name: "Outro Aviao", code: "OL879549875BR", type: "Express", country:"BR", icon: {name: 'airplane', type:'material-community', color:Color.DodgerBlue }},
             ]
         }
     }

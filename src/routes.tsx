@@ -9,10 +9,10 @@ import {StackNavOptions, DrawerNavOptions, TabNavOptions} from 'interfaces/Navig
 
 import Order from 'pages/Order'
 import OrderDetails from 'pages/OrderDetails'
-import Settings from 'pages/Settings'
-import LanguageSelect from 'pages/LanguageSelect'
-import Theme from 'pages/Theme'
-import About from 'pages/About'
+import Settings from 'pages/Settings/'
+import LanguageSelect from 'pages/Settings/LanguageSelect'
+import Theme from 'pages/Themes/'
+import About from 'pages/About/'
 
 import Color from 'models/enums/Color'
 import { HeaderLeftButtonToggle } from 'shared/components/HeaderLeft'

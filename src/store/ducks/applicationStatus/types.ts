@@ -6,7 +6,8 @@ export enum ApplicationStatusTypes {
 }
 
 export interface Languages {
-    id: string
+    id: number
+    locale: string
     name: string
     symbol: string
 }

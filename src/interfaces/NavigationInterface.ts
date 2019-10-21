@@ -5,8 +5,6 @@ import {NavigationScreenConfigProps, NavigationRoute, NavigationParams} from 're
 
 export interface ScreenProps {
     t?: (scope: string, options?: any) => string,
-    language?: string,
-    setLanguage?: (languageToSet: string) => void
 }
 
 export interface TabNavOptions extends NavigationScreenConfigProps<NavigationTabProp<NavigationRoute<NavigationParams>, any>, ScreenProps> {

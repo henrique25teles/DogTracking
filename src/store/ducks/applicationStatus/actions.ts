@@ -5,8 +5,8 @@ const setPreLoaded = () => action(ApplicationStatusTypes.SET_PRE_LOADED)
 
 const setIsReady = () => action(ApplicationStatusTypes.SET_ISREADY)
 
-const setIsReadySettings = (language: Languages) => action(ApplicationStatusTypes.SET_ISREADY_SETTINGS, {language})
+const setIsReadySettings = (language: Languages) => action(ApplicationStatusTypes.SET_ISREADY_SETTINGS, { language })
 
-const changeLanguage = (language: Languages) => action(ApplicationStatusTypes.CHANGE_LANGUAGE, {language})
+const changeLanguage = (language: Languages) => action(ApplicationStatusTypes.CHANGE_LANGUAGE, { language })
 
 export {setPreLoaded, setIsReady, setIsReadySettings, changeLanguage }

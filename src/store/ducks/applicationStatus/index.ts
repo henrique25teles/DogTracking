@@ -1,15 +1,15 @@
 import { Reducer } from 'redux'
 import { ApplicationStatusTypes, ApplicationStatusState } from 'store/ducks/applicationStatus/types'
-import {locale} from 'expo-localization'
+import {locale as deviceLocale} from 'expo-localization'
 
 const INITIAL_STATE: ApplicationStatusState = {
     isLoading: true,
     isReady: false,
-    selectedLanguage: {id: 'system', name: 'System', symbol:':round_pushpin:' },
+    selectedLanguage: {id: 1, locale: deviceLocale, name: 'System', symbol:':round_pushpin:' },
     Languages: [
-        {id: locale, name: 'System', symbol:':round_pushpin:' },
-        {id: 'pt-BR', name: 'Português Brasileiro', symbol: ':flag-br:'},
-        {id: 'en-US', name: 'English US', symbol: ':us:'},
+        {id: 1, locale: deviceLocale, name: 'System', symbol:':round_pushpin:' },
+        {id: 2, locale: 'pt-BR', name: 'Português Brasileiro', symbol: ':flag-br:'},
+        {id: 3, locale: 'en-US', name: 'English US', symbol: ':us:'},
     ]
 }
 
