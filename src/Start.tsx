@@ -45,14 +45,20 @@ const Start:FunctionComponent<Props> = (props) => {
         if (selectedLanguage) {
             const languageToSet = props.languages.find(lang => lang.id === parseInt(selectedLanguage));
             
-            if (languageToSet.id !== props.selectedLanguage.id){
-                props.setIsReadySettings(languageToSet);
-            } else {
-                props.setIsReady();
-            }
+            setTimeout(() => {
+                if (languageToSet.id !== props.selectedLanguage.id){
+                    props.setIsReadySettings(languageToSet);
+                } else {
+                    props.setIsReady();
+                }
+                
+            }, 3500);
         } else {
             await AsyncStorage.setItem('selectedLanguage', props.selectedLanguage.id.toString())
-            props.setIsReady();
+            setTimeout(() => {
+                props.setIsReady();
+                
+            }, 3500);
         }
     }
     

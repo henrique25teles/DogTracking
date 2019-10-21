@@ -2,10 +2,12 @@ import React from 'react'
 import { View, Image, StyleSheet, Dimensions } from 'react-native'
 
 import AnimatedBone from 'assets/AnimatedBone'
+import { SplashScreen } from 'expo'
 const SplashImage = require('./splash.png')
 
 export default function AnimatedSplash() {
-
+    SplashScreen.hide()
+    
   return (
     <View style={styles.container}>
         <Image style={styles.image} source={SplashImage} />
