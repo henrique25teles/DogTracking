@@ -1,6 +1,6 @@
 {
-  "packagerPort": 19001,
-  "packagerPid": 17096,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://ak-sjq.henrique25t.dogtracking.exp.direct",
   "packagerNgrokUrl": "https://packager.ak-sjq.henrique25t.dogtracking.exp.direct",
