@@ -1,7 +1,11 @@
 import React, {FunctionComponent} from 'react';
-import { AsyncStorage, StatusBar, View, Text } from 'react-native'
+import { AsyncStorage, StatusBar } from 'react-native'
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import {AppLoading} from 'expo'
+import {Asset} from 'expo-asset'
+import * as Font from 'expo-font'
+import { Ionicons, Entypo, AntDesign, MaterialCommunityIcons, FontAwesome5, FontAwesome, Octicons, MaterialIcons } from '@expo/vector-icons';
 
 import AppContainer from 'routes'
 import Localization from 'translations/Localization'
@@ -10,8 +14,6 @@ import { ApplicationState } from 'store';
 import { Languages } from 'store/ducks/applicationStatus/types';
 import * as ApplicationStatusActions from 'store/ducks/applicationStatus/actions'
 import AnimatedSplash from 'assets/AnimatedSplash';
-import {AppLoading} from 'expo'
-import {Asset} from 'expo-asset'
 
 interface StateProps {
     isLoading: boolean
@@ -32,10 +34,16 @@ const Start:FunctionComponent<Props> = (props) => {
 
     async function _loadResourcesAsync() {
         await Promise.all([
-          Asset.loadAsync([
-            require('./assets/bone.png'),
-            require('./assets/splash.png'),
-          ]),
+          Asset.fromModule(require('./assets/bone.png')).downloadAsync(),
+          Asset.fromModule(require('./assets/splash.png')).downloadAsync(),
+          Font.loadAsync(MaterialIcons.font),
+          Font.loadAsync(Ionicons.font),
+          Font.loadAsync(MaterialCommunityIcons.font),
+          Font.loadAsync(Entypo.font),
+          Font.loadAsync(AntDesign.font),
+          Font.loadAsync(FontAwesome.font),
+          Font.loadAsync(FontAwesome5.font),
+          Font.loadAsync(Octicons.font),
         ]);
       };
 
