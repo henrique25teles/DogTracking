@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux'
 
-import applicationStatus from 'store/ducks/applicationStatus'
+import orders from 'store/ducks/orders'
+import settings from 'store/ducks/settings'
 
 export default combineReducers({
-    applicationStatus,
+    orders,
+    settings,
 })

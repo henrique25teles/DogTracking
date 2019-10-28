@@ -1,7 +1,7 @@
 import i18n from 'i18n-js'
 const emoji = require('node-emoji')
 
-import {LocalizedStrings} from 'interfaces/TranslationInterface'
+import {LocalizedStrings} from 'types/TranslationInterface'
 
 import en_US from 'translations/en-US'
 import pt_BR from 'translations/pt-BR'

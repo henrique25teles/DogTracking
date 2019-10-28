@@ -3,30 +3,26 @@ import { ScrollView } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import { NavigationStackProp} from 'react-navigation-stack'
 import { ApplicationState } from 'store'
-import { Dispatch, bindActionCreators } from 'redux'
+import { useSelector } from 'react-redux'
 
-import {ScreenProps} from 'interfaces/NavigationInterface'
-import * as ApplicationStatusActions from 'store/ducks/applicationStatus/actions'
-import { Languages } from 'store/ducks/applicationStatus/types'
-import { connect } from 'react-redux'
-
-interface StateProps {
-    language: Languages
-  }
+import {ScreenProps} from 'types/NavigationInterface'
+import { Language } from 'types/SettingsTypes'
 
 interface NavigationProps {
     screenProps: ScreenProps
     navigation: NavigationStackProp
 }
 
-type Props = StateProps & NavigationProps
+type Props = NavigationProps
 
 const Settings: FunctionComponent<Props> = props => {
+    const selectedLanguage = useSelector<ApplicationState, Language>(state => state.settings.SelectedLanguage)
+
     return (
         <ScrollView>
             <ListItem 
                 title={props.screenProps.t('settingsOptions.language')}
-                subtitle={props.language.name}
+                subtitle={selectedLanguage.Name}
                 onPress={() => props.navigation.navigate('LanguageSelect')}
                 leftIcon={{name: 'language', type: 'entypo'}}
                 bottomDivider
@@ -35,16 +31,4 @@ const Settings: FunctionComponent<Props> = props => {
     )
 }
 
-const mapStateToProps = (state: ApplicationState) => {
-    return {
-        language: state.applicationStatus.selectedLanguage,
-    }
-};
-  
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return bindActionCreators({
-        ...ApplicationStatusActions,
-    }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+export default Settings

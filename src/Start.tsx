@@ -1,7 +1,6 @@
-import React, {FunctionComponent} from 'react';
-import { AsyncStorage, StatusBar } from 'react-native'
-import { Dispatch, bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, {FunctionComponent, useState} from 'react';
+import { StatusBar } from 'react-native'
+import { useSelector } from 'react-redux';
 import {AppLoading} from 'expo'
 import {Asset} from 'expo-asset'
 import * as Font from 'expo-font'
@@ -11,26 +10,16 @@ import AppContainer from 'routes'
 import Localization from 'translations/Localization'
 import Color from 'models/enums/Color';
 import { ApplicationState } from 'store';
-import { Languages } from 'store/ducks/applicationStatus/types';
-import * as ApplicationStatusActions from 'store/ducks/applicationStatus/actions'
+import { Language } from 'types/SettingsTypes';
 import AnimatedSplash from 'assets/AnimatedSplash';
 
-interface StateProps {
-    isLoading: boolean
-    isReady: boolean
-    selectedLanguage: Languages
-    languages: Languages[]
-  }
-  
-interface DispatchProps {
-    setPreLoaded(): void
-    setIsReady(): void
-    setIsReadySettings(language: Languages) : void
-}
+const Start:FunctionComponent = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [isReady, setIsReady] = useState<boolean>(false)
+    const selectedLanguage = useSelector<ApplicationState, Language>(state => state.settings.SelectedLanguage)
+    const languages = useSelector<ApplicationState, Language[]>(state => state.settings.Languages)
 
-type Props = StateProps & DispatchProps
-
-const Start:FunctionComponent<Props> = (props) => {
+    console.log(`Primeiro ${selectedLanguage}`)
 
     async function _loadResourcesAsync() {
         await Promise.all([
@@ -47,40 +36,30 @@ const Start:FunctionComponent<Props> = (props) => {
         ]);
       };
 
-    async function loadApplication() {
-        const selectedLanguage = await AsyncStorage.getItem('selectedLanguage');
+    function setPreLoaded() {
+        setIsLoading(false)
+    }
 
-        if (selectedLanguage) {
-            const languageToSet = props.languages.find(lang => lang.id === parseInt(selectedLanguage));
-            
-            setTimeout(() => {
-                if (languageToSet.id !== props.selectedLanguage.id){
-                    props.setIsReadySettings(languageToSet);
-                } else {
-                    props.setIsReady();
-                }
-                
-            }, 3500);
-        } else {
-            await AsyncStorage.setItem('selectedLanguage', props.selectedLanguage.id.toString())
-            setTimeout(() => {
-                props.setIsReady();
-                
-            }, 3500);
-        }
+    async function loadApplication() {
+    console.log(`Segundo ${selectedLanguage}`)
+
+        setTimeout(() => {
+            console.log('tá passando por aqui')
+            setIsReady(true)
+        }, 3500);
     }
     
     //Translate
     function t(scope: string, options: any): string {
-        return Localization.t(scope, { locale: props.selectedLanguage.locale, ...options });
+        return Localization.t(scope, { locale: selectedLanguage.Locale, ...options });
     };
 
     //Pre Loading
-    if (props.isLoading) {
+    if (isLoading) {
         return (
             <AppLoading 
                 startAsync={_loadResourcesAsync}
-                onFinish={props.setPreLoaded}
+                onFinish={setPreLoaded}
                 onError={console.log}
                 autoHideSplash={false}
             />
@@ -88,7 +67,7 @@ const Start:FunctionComponent<Props> = (props) => {
     }
 
     //Loading
-    if (!props.isReady){
+    if (!isReady){
         loadApplication()
         return <AnimatedSplash />
     }
@@ -106,21 +85,5 @@ const Start:FunctionComponent<Props> = (props) => {
     );
 }
 
-const mapStateToProps = (state: ApplicationState) => {
-    return {
-        isLoading: state.applicationStatus.isLoading,
-        isReady: state.applicationStatus.isReady,
-        selectedLanguage: state.applicationStatus.selectedLanguage,
-        languages: state.applicationStatus.Languages,
-    }
-};
-  
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return bindActionCreators({
-        ...ApplicationStatusActions,
-    }, dispatch)
 
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Start)
+export default Start

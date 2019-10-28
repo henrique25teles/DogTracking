@@ -5,11 +5,8 @@ import {
     NavigationScreenProp,
     NavigationState,
   } from 'react-navigation'
-import {ListItem, AvatarIcon, Button} from 'react-native-elements'
+import {ListItem, AvatarIcon} from 'react-native-elements'
 import Color from 'models/enums/Color'
-import { SplashScreen } from 'expo'
-import { firestore } from 'services/Firebase'
-import { OrderDetail } from 'models/Order/OrderDetail'
 const emoji = require('node-emoji')
   
 enum CountryEmoji {
@@ -83,23 +80,10 @@ class Order extends Component<Props, State>{
         )
     }
 
-    persistFirestore = () => {
-        const order = new OrderDetail();
-        order.Locale = 'pt-bt'
-        order.Observation = 'alskdfj'
-        order.Status = 'statos'
-        order.TrackedAt = new Date()
-
-        firestore.collection('orders').add({...order}).then(value => {
-            console.log(value.id)
-        })
-    }
-
     render(): JSX.Element {
 
         return (
             <>
-                <Button icon={{name: 'home'}} onPress={this.persistFirestore.bind(this)} />
                 <FlatList 
                     data={this.state.orders}
                     keyExtractor={this.keyextractor.bind(this)}

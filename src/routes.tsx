@@ -5,10 +5,10 @@ import {createDrawerNavigator} from 'react-navigation-drawer'
 import {createAppContainer} from 'react-navigation'
 import { Icon } from 'react-native-elements'
 
-import {StackNavOptions, DrawerNavOptions, TabNavOptions} from 'interfaces/NavigationInterface'
+import {StackNavOptions, DrawerNavOptions, TabNavOptions} from 'types/NavigationInterface'
 
-import Order from 'pages/Order'
-import OrderDetails from 'pages/OrderDetails'
+import Order from 'pages/Orders/Order'
+import OrderDetails from 'pages/Orders/OrderDetails'
 import Settings from 'pages/Settings/'
 import LanguageSelect from 'pages/Settings/LanguageSelect'
 import Theme from 'pages/Themes/'

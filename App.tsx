@@ -2,9 +2,10 @@ import React, {FunctionComponent} from 'react';
 import { StyleSheet, View } from 'react-native';
 import {SplashScreen} from 'expo'
 import { Provider } from 'react-redux'
+import {PersistGate} from 'redux-persist/integration/react'
 
 import Start from 'Start'
-import store from 'store'
+import store, { persistor } from 'store'
 
 const App: FunctionComponent = () => {
   SplashScreen.preventAutoHide()
@@ -13,7 +14,9 @@ const App: FunctionComponent = () => {
     <View style={styles.container}>
       <View style={styles.content}>
         <Provider store={store}>
-          <Start  />
+          <PersistGate loading={null} persistor={persistor}>
+            <Start  />
+          </PersistGate>
         </Provider>
       </View>
     </View>

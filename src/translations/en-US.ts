@@ -1,4 +1,4 @@
-import {LocalizationProps} from 'interfaces/TranslationInterface'
+import {LocalizationProps} from 'types/TranslationInterface'
 
 const en_US: LocalizationProps = {
     "order": "Order",

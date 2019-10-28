@@ -1,70 +1,49 @@
 import React, { FunctionComponent } from 'react'
-import { FlatList, AsyncStorage } from 'react-native'
+import { FlatList } from 'react-native'
 import {ListItem} from 'react-native-elements'
 import {NavigationStackProp} from 'react-navigation-stack'
-import { connect } from 'react-redux';
-import { Dispatch, bindActionCreators } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { ScreenProps } from 'interfaces/NavigationInterface';
-import * as ApplicationStatusActions from 'store/ducks/applicationStatus/actions'
+import { ScreenProps } from 'types/NavigationInterface';
 import { ApplicationState } from 'store';
-import { Languages } from 'store/ducks/applicationStatus/types';
-
-interface StateProps {
-    selectedLanguage: Languages
-    languages: Languages[]
-  }
-  
-interface DispatchProps {
-    changeLanguage(language: Languages): void
-}
+import { Language, SettingsActionTypes } from 'types/SettingsTypes';
+import { Action, Dispatch } from 'redux';
 
 interface NavigationProps {
     screenProps: ScreenProps
     navigation: NavigationStackProp
 }
 
-type Props = StateProps & DispatchProps & NavigationProps
+type Props = NavigationProps
 
 const LanguageSelect: FunctionComponent<Props> = props => {
+    const selectedLanguage = useSelector<ApplicationState, Language>(state => state.settings.SelectedLanguage)
+    const languages = useSelector<ApplicationState, Language[]>(state => state.settings.Languages)
+    const dispatch= useDispatch()
 
-    function onSelectLanguage(item: Languages) {
-        AsyncStorage.setItem('selectedLanguage', item.id.toString()).then(() => {
-            props.changeLanguage(item)
-        })
+    function onSelectLanguage(language: Language) {
+        console.log(language)
+        dispatch({type: SettingsActionTypes.CHANGE_LANGUAGE, payload: {language}})
     }
     
     return (
         <>
-            <FlatList<Languages>
-                data={props.languages}
+            <FlatList<Language>
+                data={languages}
                 renderItem={({item}) => { 
                     return (
                     <ListItem 
-                        title={`${item.name}`}
-                        checkBox={{iconRight: true, checked: item.id === props.selectedLanguage.id}}
+                        title={`${item.Name}`}
+                        checkBox={{iconRight: true, checked: item.Id === selectedLanguage.Id}}
                         onPress={() => onSelectLanguage(item)}
                         bottomDivider
                     />
                 )}}
-                extraData={props.selectedLanguage}
+                extraData={selectedLanguage}
                 keyExtractor={(item, index) => index.toString()}
             />
         </>
     )
 }
 
-const mapStateToProps = (state: ApplicationState) => {
-    return {
-        selectedLanguage: state.applicationStatus.selectedLanguage,
-        languages: state.applicationStatus.Languages,
-    }
-};
-  
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return bindActionCreators({
-        ...ApplicationStatusActions,
-    }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageSelect)
+export default LanguageSelect
