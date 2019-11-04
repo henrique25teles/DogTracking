@@ -1,20 +1,32 @@
 import {LocalizationProps} from 'types/TranslationInterface'
 
 const pt_bR: LocalizationProps = {
-    "order": "Encomenda",
-    "orders": "Encomendas",
-    "pendingOrders": "Pendentes",
-    "deliveredOrders": "Entregues",
-    "allOrders": "Todas",
-    "details": "Detalhes",
-    "settings": "Configurações",
-    "settingsOptions": {
-        "language": "Idioma",
-        "selectLanguage": "Selec. Idioma",
-        "systemDefault": "Padrão do sistema"
+    "Order": {
+        "AddOrder": "Adicionar Encomenda",
+        "AllOrders": "Todas",
+        "Carrier": "Transportadora",
+        "DeliveredOrders": "Entregues",
+        "Details": "Detalhes",
+        "Order": "Encomenda",
+        "OrderName": "Descrição da Encomenda",
+        "OrderNamePlaceholder": "Digite a descrição",
+        "Orders": "Encomendas",
+        "PendingOrders": "Pendentes",
+        "TrackingNumber": "Número de Rastreio",
+        "TrackingNumberPlaceholder": "Digite o Número de rastreio",
     },
-    "about": "Sobre",
-    "themes": "Temas"
+    "Settings": {
+        "Language": "Idioma",
+        "SelectLanguage": "Selecionar Idioma",
+        "Settings": "Configurações",
+        "SystemDefault": "Padrão do Sistema",
+    },
+    "Themes":{
+        "Themes": "Temas",
+    },
+    "About":{
+        "About": "Sobre",
+    },
 }
 
 export default pt_bR

@@ -1,20 +1,32 @@
 import {LocalizationProps} from 'types/TranslationInterface'
 
 const en_US: LocalizationProps = {
-    "order": "Order",
-    "orders": "Orders",
-    "pendingOrders": "Pendents",
-    "deliveredOrders": "Delivered",
-    "allOrders": "All",
-    "details": "Details",
-    "settings": "Settings",
-    "settingsOptions": {
-        "language": "Language",
-        "selectLanguage": "Select Language",
-        "systemDefault": "System Default"
+    "Order": {
+        "AddOrder": "Add Order",
+        "AllOrders": "All",
+        "Carrier": "Carrier",
+        "DeliveredOrders": "Delivered",
+        "Details": "Details",
+        "Order": "Order",
+        "OrderName": "Package Description",
+        "OrderNamePlaceholder": "Enter package description...",
+        "Orders": "Orders",
+        "PendingOrders": "Pending",
+        "TrackingNumber": "Tracking Number",
+        "TrackingNumberPlaceholder": "Enter the tracking number...",
     },
-    "about": "About",
-    "themes": "Themes"
+    "Settings": {
+        "Language": "Language",
+        "SelectLanguage": "Select Language",
+        "Settings": "Settings",
+        "SystemDefault": "System Default",
+    },
+    "Themes":{
+        "Themes": "Themes",
+    },
+    "About":{
+        "About": "About",
+    }
 }
 
 export default en_US

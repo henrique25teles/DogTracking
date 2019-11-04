@@ -1,26 +1,44 @@
-export interface SettingsProps {
-    language: string,
-    selectLanguage: string,
-    systemDefault: string,
+export interface OrdersProps {
+    AddOrder: string
+    AllOrders: string
+    Carrier: string
+    DeliveredOrders:string
+    Details: string
+    Order: string
+    OrderName: string
+    OrderNamePlaceholder: string
+    Orders: string
+    PendingOrders: string
+    TrackingNumber: string
+    TrackingNumberPlaceholder: string
 }
 
-export interface LocalizationProps {
-    order: string,
-    orders: string,
-    pendingOrders: string,
-    deliveredOrders: string,
-    allOrders: string,
-    details: string,
-    settings: string,
-    settingsOptions: SettingsProps,
-    themes: string,
-    about: string,
+export interface SettingsProps {
+    Settings: string
+    Language: string
+    SelectLanguage: string
+    SystemDefault: string
+}
+
+export interface ThemesProps {
+    Themes: string
+}
+
+export interface AboutProps {
+    About: string
+}
+
+export class LocalizationProps {
+    Order: OrdersProps 
+    Settings: SettingsProps
+    Themes: ThemesProps
+    About: AboutProps
 }
 
 export interface LocalizedStrings {
-    "en": LocalizationProps,
-    "en-US": LocalizationProps,
-    "pt": LocalizationProps,
-    "pt-BR": LocalizationProps,
-    "pt-PT": LocalizationProps,
+    "en": LocalizationProps
+    "en-US": LocalizationProps
+    "pt": LocalizationProps
+    "pt-BR": LocalizationProps
+    "pt-PT": LocalizationProps
 }
