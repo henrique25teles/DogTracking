@@ -1,27 +1,20 @@
 import React, {FunctionComponent} from 'react'
 import { ScrollView } from 'react-native'
 import { ListItem } from 'react-native-elements'
-import { NavigationStackProp} from 'react-navigation-stack'
-import { ApplicationState } from 'store'
 import { useSelector } from 'react-redux'
 
-import {ScreenProps} from 'types/NavigationInterface'
+import { ApplicationState } from 'store'
+import {StackNavOptions} from 'types/NavigationInterface'
 import { Language } from 'types/SettingsTypes'
+import Translate from 'translations/Translate'
 
-interface NavigationProps {
-    screenProps: ScreenProps
-    navigation: NavigationStackProp
-}
-
-type Props = NavigationProps
-
-const Settings: FunctionComponent<Props> = props => {
+const Settings: FunctionComponent<StackNavOptions> = props => {
     const selectedLanguage = useSelector<ApplicationState, Language>(state => state.settings.SelectedLanguage)
 
     return (
         <ScrollView>
             <ListItem 
-                title={props.screenProps.t('settingsOptions.language')}
+                title={props.screenProps.t(Translate.Settings.Language)}
                 subtitle={selectedLanguage.Name}
                 onPress={() => props.navigation.navigate('LanguageSelect')}
                 leftIcon={{name: 'language', type: 'entypo'}}

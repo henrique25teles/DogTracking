@@ -22,7 +22,6 @@ const LanguageSelect: FunctionComponent<Props> = props => {
     const dispatch= useDispatch()
 
     function onSelectLanguage(language: Language) {
-        console.log(language)
         dispatch({type: SettingsActionTypes.CHANGE_LANGUAGE, payload: {language}})
     }
     
@@ -33,7 +32,7 @@ const LanguageSelect: FunctionComponent<Props> = props => {
                 renderItem={({item}) => { 
                     return (
                     <ListItem 
-                        title={`${item.Name}`}
+                        title={item.Name}
                         checkBox={{iconRight: true, checked: item.Id === selectedLanguage.Id}}
                         onPress={() => onSelectLanguage(item)}
                         bottomDivider

@@ -4,6 +4,11 @@ export enum OrdersActionTypes {
     DELETE_ORDER = '@orders/DELETE_ORDER',
 }
 
+export enum OrderCompany {
+    Correios,
+    TotalExpress
+}
+
 export interface OrderDetail {
     Id: string
     Locale: string

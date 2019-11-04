@@ -8,21 +8,19 @@ const INITIAL_STATE: OrdersState = {
 const reducer: Reducer<OrdersState> = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case OrdersActionTypes.ADD_ORDER:
-            return {...state, Orders: [...state.Orders, action.payload.order]}
+            state.Orders.push(action.payload.order)
+            
+            return {...state}
         case OrdersActionTypes.UPDATE_ORDER:
-            return {
-                ...state, 
-                Orders:[
-                    ...state.Orders.filter(order => order.Id !== action.payload.order.Id),
-                    action.payload.order
-                ],
-            }
+            const orderToUpdate = state.Orders.find(order => order.Id === action.payload.order.Id)
+            orderToUpdate.Details = {...action.payload.order.Details}
+            
+            return {...state}
         case OrdersActionTypes.DELETE_ORDER:
             return {
                 ...state,
                 Orders:[
-                    ...state.Orders.filter(order => order.Id !== action.payload.order.Id),
-                    action.payload.order
+                    ...state.Orders.filter(order => order.Id !== action.payload.order.Id)
                 ],
             }
         default: 

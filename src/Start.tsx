@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import {AppLoading} from 'expo'
 import {Asset} from 'expo-asset'
 import * as Font from 'expo-font'
-import { Ionicons, Entypo, AntDesign, MaterialCommunityIcons, FontAwesome5, FontAwesome, Octicons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, Entypo, AntDesign, MaterialCommunityIcons, FontAwesome5, FontAwesome, Octicons, MaterialIcons, EvilIcons } from '@expo/vector-icons';
 
 import AppContainer from 'routes'
 import Localization from 'translations/Localization'
@@ -17,9 +17,6 @@ const Start:FunctionComponent = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [isReady, setIsReady] = useState<boolean>(false)
     const selectedLanguage = useSelector<ApplicationState, Language>(state => state.settings.SelectedLanguage)
-    const languages = useSelector<ApplicationState, Language[]>(state => state.settings.Languages)
-
-    console.log(`Primeiro ${selectedLanguage}`)
 
     async function _loadResourcesAsync() {
         await Promise.all([
@@ -33,6 +30,7 @@ const Start:FunctionComponent = () => {
           Font.loadAsync(FontAwesome.font),
           Font.loadAsync(FontAwesome5.font),
           Font.loadAsync(Octicons.font),
+          Font.loadAsync(EvilIcons.font),
         ]);
       };
 
@@ -41,10 +39,7 @@ const Start:FunctionComponent = () => {
     }
 
     async function loadApplication() {
-    console.log(`Segundo ${selectedLanguage}`)
-
         setTimeout(() => {
-            console.log('tá passando por aqui')
             setIsReady(true)
         }, 3500);
     }
